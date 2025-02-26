@@ -1,0 +1,76 @@
+.booking-container {
+    max-width: 800px; /* Wider container */
+    margin: 50px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Form Grid Layout */
+  .booking-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px 30px; /* Increased row spacing */
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .booking-form label {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .booking-form input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: border 0.3s;
+  }
+  
+  .booking-form input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  /* More space between rows */
+  .booking-form div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Adds space between label and input */
+  }
+  
+  /* Button spans both columns */
+  button {
+    grid-column: span 2;
+    background: rgb(90, 1, 1);
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    margin-top: 20px; /* Added more spacing before button */
+  }
+  
+  button:hover {
+    background: rgb(85, 2, 2);
+  }
+  
