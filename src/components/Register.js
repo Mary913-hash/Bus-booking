@@ -12,6 +12,8 @@ const Register = () => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(""); // For error messages
+  const [success, setSuccess] = useState(""); // Success message
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -22,10 +24,32 @@ const Register = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Registering with:", formData);
-    navigate("/login"); // Redirect to login after successful registration
+    setError(""); // Reset error before new request
+    setSuccess(""); // Reset success message
+
+    try {
+      const response = await fetch("https://busbookingtest.onrender.com/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess("Registration successful! Redirecting to login...");
+        setTimeout(() => navigate("/login"), 2000); // Redirect after 2 seconds
+      } else {
+        setError(data.error || "Registration failed. Please try again.");
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again later.");
+      console.error("Registration error:", error);
+    }
   };
 
   return (
@@ -70,6 +94,9 @@ const Register = () => {
             <option value="Driver">Driver</option>
             <option value="Admin">Admin</option>
           </select>
+
+          {error && <p className="error-message">{error}</p>}
+          {success && <p className="success-message">{success}</p>}
 
           <button type="submit" className="auth-btn">Register</button>
         </form>

@@ -1,0 +1,29 @@
+.driver-navbar {
+    background-color: rgb(92, 2, 2);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .driver-navbar h2 {
+    color: white;
+    margin: 0;
+  }
+  
+  .driver-navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .driver-navbar ul li {
+    display: inline;
+  }
+  
+  .driver-navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  

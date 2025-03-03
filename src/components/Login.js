@@ -6,6 +6,7 @@ import "./Auth.css";
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(""); // For error messages
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -16,10 +17,32 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Logging in with:", formData);
-    navigate("/"); // Redirect to the homepage after login
+    setError(""); // Reset error before new request
+
+    try {
+      const response = await fetch("https://busbookingtest.onrender.com/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        console.log("Login successful:", data);
+        localStorage.setItem("token", data.token); // Store token for authentication
+        navigate("/"); // Redirect to homepage
+      } else {
+        setError(data.error || "Login failed. Please try again.");
+      }
+    } catch (error) {
+      setError("An error occurred. Please try again later.");
+      console.error("Login error:", error);
+    }
   };
 
   return (
@@ -50,6 +73,8 @@ const Login = () => {
               {showPassword ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
+
+          {error && <p className="error-message">{error}</p>}
 
           <button type="submit" className="auth-btn">Login</button>
         </form>

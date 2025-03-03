@@ -1,0 +1,33 @@
+.available-routes {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .route-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .route-card {
+    background: #fff;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 250px;
+  }
+  
+  .book-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .book-btn:hover {
+    background: #218838;
+  }
+  
